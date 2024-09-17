@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import PokemonCard from './components/PokemonCard';
 
 class App extends React.Component {
   constructor(){
@@ -25,13 +26,12 @@ class App extends React.Component {
   }
 
   decreasePokemonNumber = () => { 
-    this.setState({ numberOfPokemon: this.state.numberOfPokemon - 1 }); 
+    if (this.state.numberOfPokemon > 0){
+      this.setState({numberOfPokemon: this.state.numberOfPokemon - 1});
+    }
   };
 
-
-
-
-  increasePokemonNumber(){
+  increasePokemonNumber = () => {
     this.setState({numberOfPokemon: this.state.numberOfPokemon + 1});
   }
 
@@ -53,6 +53,19 @@ class App extends React.Component {
         <button onClick={this.increasePokemonNumber}>
           Increase Pokemon Amount
         </button>
+
+        {
+          // Create an array with a length equal to state
+          Array(this.state.numberOfPokemon)
+          .fill(null) // fill() just gives each item in the array something, so we can use it properly
+          // the actual part that does the loop or repeated action
+          .map((element, index) => {
+            // repeated action is in this block!
+            return <PokemonCard key={index} />
+          })
+        }
+        
+
       </>
     )
   }
