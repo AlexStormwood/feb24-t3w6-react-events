@@ -24,9 +24,18 @@ class App extends React.Component {
     }
   }
 
+  decreasePokemonNumber = () => { 
+    this.setState({ numberOfPokemon: this.state.numberOfPokemon - 1 }); 
+  };
+
+
+
+
   increasePokemonNumber(){
     this.setState({numberOfPokemon: this.state.numberOfPokemon + 1});
   }
+
+ 
 
   render(){
     return(
@@ -41,9 +50,7 @@ class App extends React.Component {
         }}>
           Decrease Pokemon Amount 
         </button>
-        <button onClick={() => {
-          this.increasePokemonNumber();
-        }}>
+        <button onClick={this.increasePokemonNumber}>
           Increase Pokemon Amount
         </button>
       </>
